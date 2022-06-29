@@ -10,19 +10,19 @@
 </head>
 <body>
   <section>
-    <h2>Gestion des Actes</h2>
     <div class="toggle">
-        <input type="checkbox" class="checkbox" id="dark-mode" />
-        <label for="dark-mode" class="label">
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-sun"></i>
-          <div class="ball"></div>
-        </label>
-      </div>
-      <div id="confetti" class='hoverme'> 
-        Compteurs
-      </div>
+      <input type="checkbox" class="checkbox" id="dark-mode" />
+      <label for="dark-mode" class="label">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+        <div class="ball"></div>
+      </label>
+    </div>
+    <div id="confetti" class='hoverme'> 
+    </div>
+    <h2>Gestion des Actes</h2>
       <div id="sectionHome" class="home-section">
+        Compteurs
         <div id="div1" class="box-actes">
           <h3>Appels</h3>
           <input type="hidden" value="0" aria-valuemax="26" class="input" id="inputOne"></input>
@@ -37,25 +37,24 @@
             <button class="btn">Ajouter un acte</button>
             <p id="ValueMaxGestion">nombre à atteindre : 13</p>
         </div>
-        
       </div>
       <button class="btn2" onclick="addElement()">Ajouter un compteur</button>
   </section>
 
-  <section>
+  <section id="todo-part">
     <h2>To Do List</h2>
+    <button id="loadTodo">Load Prev Tasks</button>
     <div id="btn-box">
-        <button id="showForm" onclick="showForm()">Show Form for Add Todo</button>
+        <button id="showForm" onclick="showForm()">+</button>
     </div>
     <div class="display-none" id="display-add__form">
-        <input type="text" name="title" id="inputTitle" placeholder="Enter the title of the todo">
-        <button id="addTodo">Add A ToDo</button>
+        <input type="text" name="title" id="inputTitle" placeholder="Enter Todo's name">
+        <button id="addTodo">Add ToDo</button>
     </div>
     <div class="task-box">
         <div id="task">
         </div>
     </div>
-    <button id="loadTodo">Load Prev Tasks</button>
 
   </section>
 
