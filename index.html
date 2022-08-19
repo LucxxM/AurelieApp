@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -10,8 +9,8 @@
 </head>
 <body>
   <section>
-    <div class="toggle">
-      <input type="checkbox" class="checkbox" id="dark-mode" />
+    <div role="form" class="toggle">
+      <input type="checkbox" class="checkbox" id="dark-mode" name="dark-mode" aria-labelledby="dark-mode" aria-label="dark-mode"/>
       <label for="dark-mode" class="label">
         <i class="fas fa-moon"></i>
         <i class="fas fa-sun"></i>
@@ -27,29 +26,29 @@
           <h3>Appels</h3>
           <input type="hidden" value="0" aria-valuemax="26" class="input" id="inputOne"></input>
           <div class="count-box" id="count-one">0</div>
-          <button class="btn">Ajouter un acte</button>
+          <button class="btn" type="button">Ajouter un acte</button>
           <p id="ValueMaxAppels">nombre à atteindre : 26</p>
         </div>
         <div class="box-actes">
             <h3>Gestion</h3>
             <input type="hidden" value="0" aria-valuemax="13" class="input" id="inputTwo"></input>
             <div class="count-box" id="count-two">0</div>
-            <button class="btn">Ajouter un acte</button>
+            <button class="btn" type="button">Ajouter un acte</button>
             <p id="ValueMaxGestion">nombre à atteindre : 13</p>
         </div>
       </div>
-      <button class="btn2" onclick="addElement()">Ajouter un compteur</button>
+      <button class="btn2" onclick="addElement()" type="button">Ajouter un compteur</button>
   </section>
 
   <section id="todo-part">
     <h2>To Do List</h2>
-    <button id="loadTodo">Load Prev Tasks</button>
+    <button id="loadTodo" type="button">Load Prev Tasks</button>
     <div id="btn-box">
-        <button id="showForm" onclick="showForm()">+</button>
+        <button id="showForm" onclick="showForm()" type="button">+</button>
     </div>
     <div class="display-none" id="display-add__form">
         <input type="text" name="title" id="inputTitle" placeholder="Enter Todo's name">
-        <button id="addTodo">Add ToDo</button>
+        <button id="addTodo" type="button">Add ToDo</button>
     </div>
     <div class="task-box">
         <div id="task">
