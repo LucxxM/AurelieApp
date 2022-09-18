@@ -1,11 +1,9 @@
 const darkMode = document.getElementById('dark-mode');
-
 darkMode.addEventListener('change', () => {
   document.body.classList.toggle('dark');
 });
 
 // PART Counter
-
 function syncDelay(milliseconds){
     var start = new Date().getTime();
     var end=0;
@@ -182,7 +180,7 @@ addTodo.addEventListener("click", function () {
   const btnDelete = document.createElement("button");
 
     btnDelete.classList.add("btn");
-    btnDelete.innerHTML = "Delete Todo";
+    btnDelete.innerHTML = "Delete List";
     btnDelete.id = id2;
     btnDelete.addEventListener("click", function () {
       this.parentElement.remove();
@@ -190,10 +188,10 @@ addTodo.addEventListener("click", function () {
     });
   
   inputBox.style.width = "max-content";
-  inputBox.prepend(btnDelete);
   inputBox.prepend(title);
   inputBox.prepend(btn);
   inputBox.prepend(input);
+  inputBox.prepend(btnDelete);
   task.appendChild(inputBox);
 
   let taskId = 0;
@@ -311,7 +309,7 @@ loadTodo.addEventListener("click", function () {
 
     const btnDelete = document.createElement("button");
     btnDelete.classList.add("btn");
-    btnDelete.innerHTML = "Delete Todo";
+    btnDelete.innerHTML = "Delete List";
     btnDelete.id = id2;
     btnDelete.addEventListener("click", function () {
     this.parentElement.remove();
@@ -398,7 +396,6 @@ loadTodo.addEventListener("click", function () {
       
       localStorage.setItem(key, dataJson, todoList);
       
-      console.log(todoList);
     });
     
     const data = {
@@ -419,20 +416,19 @@ loadTodo.addEventListener("click", function () {
     tilte.style.color = "rgb(219, 65, 173)";
     tilte.innerHTML = tilteValue;
     btn.type = "submit";
-    btn.innerHTML = "add";
+    btn.innerHTML = "add Task";
     input.type = "text";
     input.placeholder = "Title Task";
     input.className = "task";
     todoList.id = todoListId;
     
     inputBox.style.width = "max-content";
-    inputBox.prepend(btnDelete);
     inputBox.prepend(tilte);
     inputBox.prepend(btn);
     inputBox.prepend(input);
+    inputBox.prepend(btnDelete);
     task.appendChild(inputBox);
     
-    let taskId = 0;
     btn.addEventListener("click", function () {
       const newTask = document.createElement("li");
 
