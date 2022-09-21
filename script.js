@@ -1,137 +1,3 @@
-const darkMode = document.getElementById('dark-mode');
-darkMode.addEventListener('change', () => {
-  document.body.classList.toggle('dark');
-});
-
-// PART Counter
-function syncDelay(milliseconds){
-    var start = new Date().getTime();
-    var end=0;
-    while( (end-start) < milliseconds){
-        end = new Date().getTime();
-    }
-}
-
-let id = 0; 
-function addElement () {
-  const newParent = document.getElementById('sectionHome');
-  
-  var newDiv = document.createElement("div");
-  newDiv.classList.add('box-actes');
-
-  
-  var newH2 = document.createElement("h2");
-  newH2.textContent = prompt('choissez un nom');
-  if (newH2.textContent == ''){
-    id++;
-    newH2.textContent = 'Compteur : ' + id ;
-    alert(`Vous n'avez pas choisi de nom, vous avez donc un compteur par défaut`);
-  }
-  newDiv.appendChild(newH2);
-  
-  var newInput = document.createElement("input");
-  newInput.classList.add('input');
-  newInput.type = 'hidden';
-  newInput.value = 0;
-  newInput.ariaValueMax = prompt('choisir un nombre à atteindre');
-
-  if (newInput.ariaValueMax == ''){
-    newInput.ariaValueMax = 10;
-    alert('nombre à atteindre par défaut: 10');
-  }
-  newDiv.appendChild(newInput);
-
-  
-  
-  var newDiv2 = document.createElement('div');
-  newDiv2.classList.add('count-box');
-  newDiv2.textContent = newInput.value;
-  newDiv.appendChild(newDiv2);
-  
-  var newBtn = document.createElement('button');
-  newBtn.classList.add('btn');
-  newBtn.id = 'brnPrepend';
-  newBtn.textContent = 'Ajouter un acte';
-  newBtn.click = 'onClickBtn()';
-  newDiv.appendChild(newBtn);
-
-  const newP = document.createElement('p');
-  newP.innerText = 'nombre à atteindre ' + newInput.ariaValueMax;
-
-  newDiv.appendChild(newP);
-  
-  newParent.prepend(newDiv);
-  
-  newParent.insertBefore(newDiv, newParent.childNodes[0]);
-  document.querySelectorAll('button.btn');
-  
-}
-
-document.querySelectorAll('button.btn').forEach(function (link){
-    link.addEventListener("click", onClickBtn); 
-})
-
-function onClickBtn(e){
-  
-  this.previousElementSibling.previousElementSibling.value ++;
-  var countShow = this.previousElementSibling;
-  var count = this.previousElementSibling.previousElementSibling.value;
-  var maxCount = this.previousElementSibling.previousElementSibling.ariaValueMax;
-  var valueMaxDiv = this.nextElementSibling;
-  var valueToInsert = maxCount - parseInt(count);
-  console.log(maxCount - parseInt(count));
-  valueMaxDiv.textContent = "Nombre restant : " + valueToInsert;
-  e.preventDefault();
-  countShow.textContent = count;
-
-  function random(max){
-    return Math.random() * (max - 0) + 0;
-  }
-  var c = document.createDocumentFragment();
-
-  for (var i=0; i<20; i++) {
-    var styles = 'transform: translate3d(' + (random(25) - 0) + 'px, ' + (random(50) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
-                  background: hsla('+random(360)+',100%,50%,1);\
-                  animation: bang 800ms ease-out forwards;\
-                  opacity: 0';
-    var e = document.createElement("i");
-    e.style.cssText = styles.toString();
-    c.appendChild(e);
-  }
-  document.getElementById('confetti').appendChild(c);
-
-
-  if (count == maxCount){
-    onClickBtn2();
-    countShow.textContent = 'Fini!!!';
-    this.classList.add('display-none');
-  }
-
-} 
-
-document.addEventListener('click',function(e){ if(e.target && e.target.id == 'brnPrepend'){ document.querySelectorAll('button.btn').forEach(function (link){
-  link.addEventListener("click", onClickBtn); 
-}) } })
-
-function onClickBtn2(){  
-
-  function random(max){
-    return Math.random() * (max - 0) + 0;
-  }
-  var c = document.createDocumentFragment();
-
-  for (var i=0; i<200; i++) {
-    var styles = 'transform: translate3d(' + (random(1000) - 250) + 'px, ' + (random(500) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
-                  background: hsla('+random(360)+',100%,50%,1);\
-                  animation: bang 1100ms ease-out forwards;\
-                  opacity: 0';
-    var e = document.createElement("i");
-    e.style.cssText = styles.toString();
-    c.appendChild(e);
-  }
-  document.getElementById('confetti').appendChild(c);
-}
-
 // PART Todolist
 
 const task = document.querySelector("#task");
@@ -178,7 +44,6 @@ addTodo.addEventListener("click", function () {
 
 
   const btnDelete = document.createElement("button");
-
     btnDelete.classList.add("btn");
     btnDelete.innerHTML = "Delete List";
     btnDelete.id = id2;
@@ -194,6 +59,7 @@ addTodo.addEventListener("click", function () {
   inputBox.prepend(btnDelete);
   task.appendChild(inputBox);
 
+  console.log(todoList);
   let taskId = 0;
   btn.addEventListener("click", function () {
     const newTask = document.createElement("li");
@@ -215,19 +81,13 @@ addTodo.addEventListener("click", function () {
         this.style.opacity = "0.5";
         this.style.textDecoration = "line-through";
         this.done = true;
-        console.log(localStorage.getItem(id));
-        console.log(JSON.parse(localStorage.getItem(id)));
 
         let todoList = JSON.parse(localStorage.getItem(id));
-        console.log(todoList.todoListTasks.length);
         for(i=0; i<todoList.todoListTasks.length; i++){
           if(todoList.todoListTasks[i].id == this.id){
             todoList.todoListTasks[i].done = true;
           }
         }
-
-        console.log(todoList.todoListTasks);
-
         localStorage.setItem(id, JSON.stringify(todoList));
 
 
@@ -236,7 +96,7 @@ addTodo.addEventListener("click", function () {
         this.style.textDecoration = "none";
         this.done = false;
         let todoList = JSON.parse(localStorage.getItem(id));
-        console.log(todoList.todoListTasks.length);
+        // console.log(todoList.todoListTasks.length);
         for(i=0; i<todoList.todoListTasks.length; i++){
           if(todoList.todoListTasks[i].id == this.id){
             todoList.todoListTasks[i].done = false;
@@ -249,15 +109,15 @@ addTodo.addEventListener("click", function () {
 
     newTask.addEventListener("dblclick", function () {
       this.remove();
-      todoList.pop(this);
-      const data = {
-        id: idInputBox,
-        title: tilteValue,
-        idInputBox: idInputBox,
-        todoListTasks: todoList,
-      };
-      const dataJson = JSON.stringify(data);
-      localStorage.setItem(id, dataJson, todoList);
+      let todoList = JSON.parse(localStorage.getItem(id));
+        for(i=0; i<todoList.todoListTasks.length; i++){
+          if(todoList.todoListTasks[i].id == this.id){
+
+            todoList.todoListTasks.splice(i, 1);
+          }
+        }
+
+        localStorage.setItem(id, JSON.stringify(todoList));
     });
 
     const task = {
@@ -334,7 +194,6 @@ loadTodo.addEventListener("click", function () {
       newTask.style.opacity = "0.5";
       newTask.style.textDecoration = "line-through";
     }else{
-
       newTask.style.opacity = "1";
     }
 
@@ -346,20 +205,12 @@ loadTodo.addEventListener("click", function () {
         this.style.opacity = "0.5";
         this.style.textDecoration = "line-through";
         this.done = true;
-        console.log(localStorage.getItem(id));
-        console.log(JSON.parse(localStorage.getItem(id)));
-
         let todoList = JSON.parse(localStorage.getItem(id));
-        console.log(todoList.todoListTasks.length);
         for(i=0; i<todoList.todoListTasks.length; i++){
-          console.log(todoList.todoListTasks[i].id);
           if(todoList.todoListTasks[i].id == this.id){
             todoList.todoListTasks[i].done = true;
           }
         }
-
-        console.log(todoList.todoListTasks);
-
         localStorage.setItem(id, JSON.stringify(todoList));
         
         
@@ -369,13 +220,13 @@ loadTodo.addEventListener("click", function () {
         this.done = false;
         
         let todoList = JSON.parse(localStorage.getItem(id));
-        console.log(todoList.todoListTasks.length);
+        // console.log(todoList.todoListTasks.length);
         for(i=0; i<todoList.todoListTasks.length; i++){
           if(todoList.todoListTasks[i].id == this.id){
             todoList.todoListTasks[i].done = false;
           }
         }
-        console.log(todoList.todoListTasks);
+        // console.log(todoList.todoListTasks);
 
         localStorage.setItem(id, JSON.stringify(todoList));
       }
@@ -383,19 +234,15 @@ loadTodo.addEventListener("click", function () {
     
     newTask.addEventListener("dblclick", function () {
       this.remove();
-      todoList.pop(this);
-      
-      const data = {
-        id: id2,
-        title: tilteValue,
-        idInputBox: idInputBox,
-        todoListTasks: todoList,
-      };
-      
-      const dataJson = JSON.stringify(data);
-      
-      localStorage.setItem(key, dataJson, todoList);
-      
+      let todoList = JSON.parse(localStorage.getItem(id));
+        for(i=0; i<todoList.todoListTasks.length; i++){
+          if(todoList.todoListTasks[i].id == this.id){
+
+            todoList.todoListTasks.splice(i, 1);
+          }
+        }
+
+        localStorage.setItem(id, JSON.stringify(todoList));
     });
     
     const data = {
@@ -429,12 +276,18 @@ loadTodo.addEventListener("click", function () {
     inputBox.prepend(btnDelete);
     task.appendChild(inputBox);
     
+    let taskId = 0;
+    console.log(todoList.length);
+    for (let i = 0; i < todoList.length; i++) {
+      taskId = parseInt(todoList[i].id);
+    }
     btn.addEventListener("click", function () {
       const newTask = document.createElement("li");
-
+      console.log(taskId);
       taskId++;
       newTask.innerHTML = input.value;
       newTask.title = input.value;
+      newTask.id  = taskId;
       newTask.style.backgroundColor = "rgb(219, 65, 173)";
       newTask.style.opacity = "1";
       newTask.style.color = "white";
@@ -490,17 +343,16 @@ loadTodo.addEventListener("click", function () {
   btnForm.style.display = "flex";
 });
 
-function showForm() {
+const showForm = () => {
   const form = document.querySelector("#display-add__form");
   const btn = document.querySelector("#showForm");  
 
+  form.classList.toggle("display-none");
+
   if (form.classList.contains("display-none")) {
-    form.classList.remove("display-none");
-    btn.innerHTML = "Hide Form";  
+    btn.innerHTML = "Show form";
   } else {
-    form.classList.add("display-none");
-    btn.innerHTML = "Show Form";
+    btn.innerHTML = "Hide form";
   }
- 
 } 
   
